@@ -1,0 +1,10 @@
+codeLabel: GRAPHENE_PARSER
+codeLabelStyle: All in capitals
+codeName: graphene_parser
+codeUrl: https://www.poissonboltzmann.org/
+codeCategory: Atomistic code
+status: production
+parserDirName: graphene_parser
+parserSpecific: ''
+preamble: ''
+tableOfFiles: ''

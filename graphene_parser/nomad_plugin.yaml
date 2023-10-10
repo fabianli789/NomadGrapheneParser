@@ -1,0 +1,8 @@
+plugin_type: parser
+name: parsers/graphene_parser
+description: |
+  This is a simple hello world parser. This is meant as a template. Fork the github
+  project to create your own parser.
+mainfile_name_re: ^.*\.yml$
+parser_class_name: graphene_parser.Parser
+code_name: meysam_graphene_parser
