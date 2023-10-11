@@ -32,7 +32,7 @@ from nomad.datamodel.results import Results, Properties, Structure
 from nomad.parsing.file_parser import UnstructuredTextFileParser, Quantity
 from nomad.datamodel.optimade import Species
 from . import metainfo  # pylint: disable=unused-import
-from .metainfo.graphene_parser import Dimensions, ChemReactions, Concentrations, Time
+from .metainfo.graphene import Dimensions, ChemReactions, Concentrations, Time
 
 
 def DetailedParser(filepath, archive):
@@ -55,24 +55,7 @@ def DetailedParser(filepath, archive):
                 if re.search(r'step', parts[0].lower()):
                     calc.step = int(float(parts[1]))
     
-    
-    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     if os.path.exists(str(filepath.parent) + r'/occurrence_res.csv'):
         with open(str(filepath.parent) + r"/occurrence_res.csv") as occurrence_file:
             occurence_array = []
@@ -86,8 +69,8 @@ def DetailedParser(filepath, archive):
                     residence_time_array.append(float(parts[2]))
                 else:
                     pass
-    if os.path.exists(str(filepath.parent) + r'/input.yml'):    
-        with open(str(filepath.parent) + r'/input.yml') as file:
+    if os.path.exists(str(filepath.parent) + r'/input_graphene.yml'):    
+        with open(str(filepath.parent) + r'/input_graphene.yml') as file:
             dim = calc.m_create(Dimensions)
             j = 0
             for i, line in enumerate(file):
@@ -213,8 +196,8 @@ def DetailedParser(filepath, archive):
             calc.mean_radius_growth = mean_radius_growth
             calc.mean_radius_growth_time = mean_radius_growth_time
 
-    if os.path.exists(str(filepath.parent) + r'/graphene_propertise.csv'):
-        with open(str(filepath.parent) + r'/graphene_propertise.csv') as prop_file:
+    if os.path.exists(str(filepath.parent) + r'/graphene_properties.csv'):
+        with open(str(filepath.parent) + r'/graphene_properties.csv') as prop_file:
             dim = calc.m_create(Dimensions)
             for i, line in enumerate(prop_file):
                 line = line.strip("\n")

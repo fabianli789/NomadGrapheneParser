@@ -1,0 +1,65 @@
+X_dimension: 100 
+Y_dimension: 100 
+frac_save: 10000 
+frac_div: 100    
+vis_step: 10000  
+p_ch4: 100       
+p_h2: 0.01       
+T: 1300          
+barriers:
+- H2  --> 2H                    : 0.37
+- CH4 --> CH3  + H              : 1.48
+- H + H --> H2                  : 0.92
+- CH3 + H --> CH4               : 0.90
+- CH3 --> CH2 + H               : 1.39
+- CH2 + H --> CH3               : 0.58
+- CH2 --> CH + H                : 0.99
+- CH + H --> CH2                : 0.55
+- CH --> C + H                  : 1.87
+- C + H --> CH                  : 0.66
+- C + C --> C2                  : 0.55
+- C2 --> C + C                  : 3.62
+- C2 + H --> C2H                : 0.83
+- C2H --> C2 + H                : 1.45
+- C + CH --> C2H                : 0.48
+- C2H --> C + CH                : 2.95
+- CH + CH --> C2H2              : 0.29
+- C2H2 --> CH + CH              : 2.21
+- C2H + H --> C2H2              : 1.01
+- C2H2 --> C2H + H              : 1.67
+- C2H2 --> C2H2                 : 1.59
+- C --> C                       : 0.15
+- C2 --> C2                     : 0.48
+- CH --> CH                     : 0.15
+- CH2 --> CH2                   : 0.14
+- C2H --> C2H                   : 0.31
+- C2H2 --> C2H2                 : 0.36
+- H --> H                       : 0.14
+- C --> C-edge                  : 0.44
+- C-edge --> C                  : 1.21
+- C2 --> C2-edge                : 1.22
+- C2-edge --> C2                : 2.24
+- CH --> CH-edge                : 0.33
+- CH-edge --> CH                : 0.83
+- CH2 --> CH2-edge              : 0.06
+- CH2-edge --> CH2              : 1.79
+- C2H --> C2H-edge              : 0.9 
+- C2H-edge --> C2H              : 1.74
+- C2H2 --> C2H2-edge            : 0.93
+- C2H2-edge --> C2H2            : 1.72
+- H --> CH-edge                 : 0.77
+- CH-edge --> H                 : 1.61
+- CH-edge --> C + H             : 1.76
+- C + H --> CH-edge             : 0.71
+- CH2-edge --> CH + H           : 2.36
+- CH + H --> CH2-edge           : 0.59
+- C2H-edge --> C2 + H           : 1.57
+- C2 + H --> C2H-edge           : 1.08
+- C2H2-edge --> C2H + H         : 1.7 
+- C2H + H --> C2H2-edge         : 1.07
+- C2 + zz --> C2-edge           : 0.74
+- C --> kink                    : 0.54
+- kink --> C                    : 2.29
+- C2 --> kink                   : 0.54
+- kink --> C2                   : 2.29
+
