@@ -19,9 +19,9 @@
 import sys
 from nomad.metainfo import Environment
 from nomad.metainfo.legacy import LegacyMetainfoEnvironment
-import graphene_parser.metainfo.graphene_parser
+import graphene_parser.metainfo.graphene
 import nomad.datamodel.metainfo.common
 
 m_env = LegacyMetainfoEnvironment()
-m_env.m_add_sub_section(Environment.packages, sys.modules['graphene_parser.metainfo.graphene_parser'].m_package)  # type: ignore
+m_env.m_add_sub_section(Environment.packages, sys.modules['graphene_parser.metainfo.graphene'].m_package)  # type: ignore
 m_env.m_add_sub_section(Environment.packages, sys.modules['nomad.datamodel.metainfo.common'].m_package)  # type: ignore
