@@ -22,12 +22,12 @@ import logging
 
 from nomad.utils import configure_logging
 from nomad.datamodel import EntryArchive
-from graphene_parser import Parser
+from graphene_parser import GrapheneParser
 
 
 
 if __name__ == "__main__":
     configure_logging(console_log_level=logging.DEBUG)
     archive = EntryArchive()
-    Parser().parse(sys.argv[1], archive, logging)
+    GrapheneParser().parse(sys.argv[1], archive, logging)
     json.dump(archive.m_to_dict(), sys.stdout, indent=2)

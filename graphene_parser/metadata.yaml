@@ -1,6 +1,6 @@
-codeLabel: GRAPHENE_PARSER
+codeLabel: GRAPHENE
 codeLabelStyle: All in capitals
-codeName: graphene_parser
+codeName: graphene
 codeUrl: https://www.poissonboltzmann.org/
 codeCategory: Atomistic code
 status: production

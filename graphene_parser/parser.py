@@ -214,7 +214,7 @@ def DetailedParser(filepath, archive):
                     dim.hydro_edge = float(parts[1])
                 if re.search(r'defe', parts[0].lower()):
                     dim.defects = float(parts[1])    
-class Parser():
+class GrapheneParser():
 
     def parse(self, filepath, archive, logger):
         input_run = archive.m_create(Run)
