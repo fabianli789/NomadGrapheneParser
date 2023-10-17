@@ -106,7 +106,7 @@ def DetailedParser(filepath, archive):
             coord_y_final = []
             coordinates_final =  np.zeros((j,3))
             
-        with open(str(filepath.parent) + r'/last_step.csv') as last_step_file:    
+            last_step_file.seek(0)    
             for i, line in enumerate(last_step_file):
                 parts = line.strip("\n").split(",")
                 if re.search(r'species', line):
@@ -164,8 +164,8 @@ def DetailedParser(filepath, archive):
             conc_array = np.zeros((rows+1, len(first_line_parts)-1))
             time_array = []
             
-        
-        with open(str(filepath.parent) + r'/concentration.csv') as conc_file:    
+    
+            conc_file.seek(0) 
             for j, line in enumerate(conc_file):
             
                 if re.search(r'time', line.lower()):
@@ -217,9 +217,9 @@ def DetailedParser(filepath, archive):
 class GrapheneParser():
 
     def parse(self, filepath, archive, logger):
-        input_run = archive.m_create(Run)
-        input_run.program_name = 'Meysam Graphene Parser'
-        input_run.program = Program(name='Meysam Graphene Parser')
-
+        sec_run = archive.m_create(Run)
+        sec_program = archive.m_setdefault('run.program')
+        sec_program.name = 'Meysam Graphene Parser'
+    
         mainfile = Path(filepath)
         DetailedParser(mainfile, archive)
