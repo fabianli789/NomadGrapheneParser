@@ -25,7 +25,7 @@ from nomad.datamodel import results, optimade
 m_package = Package()
 
 
-class Dimensions(MSection):
+class Dimensions_Graphene(MSection):
     m_def = Section(validate=False)
     x = Quantity(type=float, description='x-dimension of 2d lattice in nm')
     y = Quantity(type=float, description='y-dimension of 2d lattice in nm')
@@ -34,17 +34,14 @@ class Dimensions(MSection):
     rq = Quantity(type=float, description='Roughness RQ in nm')
     hydro_edge = Quantity(type=float, description='Share of Hydrogenated edges in %')
     defects = Quantity(type=float, description='Share of defects in %')
-class Time(MSection):
-    m_def = Section(validate=False)
-    time = Quantity(type=float, shape=['*'], description='time evolution for the concentration of molecules, same length as "concentration"-array')
-
-class Concentrations(MSection):
+    
+class Concentrations_Graphene(MSection):
     m_def = Section(validate=False)
     name = Quantity(type=str, description='name of molecule. "e" means already attached to graphene edge.')
     concentration = Quantity(type=float, shape = ['*'], description='concentration of molecule at specific time, same length as "time"-array at run.calculation.concentration_time')
 
 
-class ChemReactions(MSection):
+class ChemReactions_Graphene(MSection):
     name = Quantity(type=str, description = 'name of chem. reaction')
     barrier = Quantity(type=float, shape=[], description='energetic barrier in eV')
     
@@ -54,10 +51,10 @@ class ChemReactions(MSection):
 
 class Calculation(simulation.calculation.Calculation):
     m_def = Section(validate=False, extends_base_section=True)    
-    dimensional_properties = SubSection(sub_section=Dimensions.m_def, repeats=False)
+    dimensional_properties = SubSection(sub_section=Dimensions_Graphene.m_def, repeats=False)
     
-    chem_reactions = SubSection(sub_section=ChemReactions.m_def, repeats=True)
-    concentrations = SubSection(sub_section=Concentrations.m_def, repeats=True)
+    chem_reactions = SubSection(sub_section=ChemReactions_Graphene.m_def, repeats=True)
+    concentrations = SubSection(sub_section=Concentrations_Graphene.m_def, repeats=True)
     volume_fraction = Quantity(type=float, description='volume if SEI got pressed together')
     porosity = Quantity(type=float, description='share of porous volume wrt to total SEI volume')
     concentration_time = Quantity(type=float, shape=['*'], description='time evolution for the concentration of molecules, same length as "concentration"-array under run.calculation.concentrations')

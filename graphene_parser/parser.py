@@ -32,7 +32,7 @@ from nomad.datamodel.results import Results, Properties, Structure
 from nomad.parsing.file_parser import UnstructuredTextFileParser, Quantity
 from nomad.datamodel.optimade import Species
 from . import metainfo  # pylint: disable=unused-import
-from .metainfo.graphene import Dimensions, ChemReactions, Concentrations, Time
+from .metainfo.graphene import Dimensions_Graphene, ChemReactions_Graphene, Concentrations_Graphene
 
 
 def DetailedParser(filepath, archive):
@@ -71,7 +71,7 @@ def DetailedParser(filepath, archive):
                     pass
     if os.path.exists(str(filepath.parent) + r'/input_graphene.yml'):    
         with open(str(filepath.parent) + r'/input_graphene.yml') as file:
-            dim = calc.m_create(Dimensions)
+            dim = calc.m_create(Dimensions_Graphene)
             j = 0
             for i, line in enumerate(file):
                 parts  = line.split(": ")
@@ -85,7 +85,7 @@ def DetailedParser(filepath, archive):
                 elif re.search(r'p_h2', parts[0].lower()):
                     calc.pressure_H2 = float(parts[1])        
                 elif re.search(r'\-', parts[0]):
-                    chem_reactions = calc.m_create(ChemReactions)
+                    chem_reactions = calc.m_create(ChemReactions_Graphene)
                     parts[0] = parts[0].lstrip('- ').rstrip(' ')
                     chem_reactions.name = parts[0]
                     chem_reactions.barrier = float(parts[1])
@@ -180,7 +180,7 @@ def DetailedParser(filepath, archive):
             calc.concentration_time = time_array
 
             for i in range(len(first_line_parts)-1):
-                conc = calc.m_create(Concentrations)   
+                conc = calc.m_create(Concentrations_Graphene)   
                 conc.name = first_line_parts[i+1]
                 conc.concentration = conc_array[:,i]
     if os.path.exists(str(filepath.parent) + r'/growth.csv'):
@@ -198,7 +198,7 @@ def DetailedParser(filepath, archive):
 
     if os.path.exists(str(filepath.parent) + r'/graphene_properties.csv'):
         with open(str(filepath.parent) + r'/graphene_properties.csv') as prop_file:
-            dim = calc.m_create(Dimensions)
+            dim = calc.m_create(Dimensions_Graphene)
             for i, line in enumerate(prop_file):
                 line = line.strip("\n")
                 parts = line.split(",")
