@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+import numpy as np
 from nomad.metainfo import MSection, Section, SubSection, Quantity, Package
 from nomad.datamodel.metainfo import simulation
 from nomad.datamodel import results, optimade
@@ -38,10 +38,11 @@ class Dimensions_Graphene(MSection):
 class Concentrations_Graphene(MSection):
     m_def = Section(validate=False)
     name = Quantity(type=str, description='name of molecule. "e" means already attached to graphene edge.')
-    concentration = Quantity(type=float, shape = ['*'], description='concentration of molecule at specific time, same length as "time"-array at run.calculation.concentration_time')
+    concentration = Quantity(type=np.float64, shape = ['*'], description='concentration of molecule at specific time, same length as "time"-array at run.calculation.concentration_time')
 
 
 class ChemReactions_Graphene(MSection):
+    m_def  = Section(validate=False)
     name = Quantity(type=str, description = 'name of chem. reaction')
     barrier = Quantity(type=float, shape=[], description='energetic barrier in eV')
     
@@ -57,13 +58,13 @@ class Calculation(simulation.calculation.Calculation):
     concentrations = SubSection(sub_section=Concentrations_Graphene.m_def, repeats=True)
     volume_fraction = Quantity(type=float, description='volume if SEI got pressed together')
     porosity = Quantity(type=float, description='share of porous volume wrt to total SEI volume')
-    concentration_time = Quantity(type=float, shape=['*'], description='time evolution for the concentration of molecules, same length as "concentration"-array under run.calculation.concentrations')
+    concentration_time = Quantity(type=np.float64, shape=['*'], description='time evolution for the concentration of molecules, same length as "concentration"-array under run.calculation.concentrations')
     pressure_CH4 = Quantity(type=float, description='Pressure of CH4 in Torr')
     pressure_H2 = Quantity(type=float, description='Pressure of H2 in Torr')
-    bonds  = Quantity(type=int, shape=['*'], description = 'index of paired atom. -1 means unavailable. Same order as "cartesian_site_coordinates" - array.')
-    flag = Quantity(type=int, shape=['*'], description = '# of bonds in graphene flake. Same order as "cartesian_site_coordinates" - array.')
-    mean_radius_growth = Quantity(type=float, shape=['*'], description = 'change of mean radius  in nm over time. See mean_radius_growth_time for time steps.')
-    mean_radius_growth_time = Quantity(type=float, shape=['*'], description = 'time steps for mean radius growth. Same order of array as "mean_radius_growth".')
+    bonds  = Quantity(type=np.int32, shape=['*'], description = 'index of paired atom. -1 means unavailable. Same order as "cartesian_site_coordinates" - array.')
+    flag = Quantity(type=np.int32, shape=['*'], description = '# of bonds in graphene flake. Same order as "cartesian_site_coordinates" - array.')
+    mean_radius_growth = Quantity(type=np.float64, shape=['*'], description = 'change of mean radius  in nm over time. See mean_radius_growth_time for time steps.')
+    mean_radius_growth_time = Quantity(type=np.float64, shape=['*'], description = 'time steps for mean radius growth. Same order of array as "mean_radius_growth".')
 class Run(simulation.run.Run):
     m_def = Section(validate=False, extends_base_section=True)
 

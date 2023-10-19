@@ -132,10 +132,10 @@ def DetailedParser(filepath, archive):
                    flag.append(-1)
             
             
-            calc.bonds = bonds
-            calc.flag = flag
-            coordinates_final[:, 0] = coord_x_final
-            coordinates_final[:, 1] = coord_y_final
+            calc.bonds = np.array(bonds)
+            calc.flag = np.array(flag)
+            coordinates_final[:, 0] = np.array(coord_x_final)
+            coordinates_final[:, 1] = np.array(coord_y_final)
             structure_original = archive.m_setdefault("results.properties.structures.structure_original")
             structure_original.cartesian_site_positions = coordinates_final
             structure_original.species_at_sites = species_array
@@ -193,8 +193,8 @@ def DetailedParser(filepath, archive):
                 parts = line.strip('"').split(',')
                 mean_radius_growth.append(float(parts[1]))
                 mean_radius_growth_time.append(float(parts[2]))        
-            calc.mean_radius_growth = mean_radius_growth
-            calc.mean_radius_growth_time = mean_radius_growth_time
+            calc.mean_radius_growth = np.array(mean_radius_growth)
+            calc.mean_radius_growth_time = np.array(mean_radius_growth_time)
 
     if os.path.exists(str(filepath.parent) + r'/graphene_properties.csv'):
         with open(str(filepath.parent) + r'/graphene_properties.csv') as prop_file:
