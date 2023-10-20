@@ -140,7 +140,7 @@ def DetailedParser(filepath, archive):
             structure_original.cartesian_site_positions = coordinates_final
             structure_original.species_at_sites = species_array
 
-            species_unique = list(set(species_array))
+            species_unique = sorted(list(set(species_array)))
             
             for x in range(len(species_unique)):    
                 sec_species = structure_original.m_create(Species)
