@@ -50,7 +50,7 @@ class ChemReactions_Graphene(MSection):
     residence_time = Quantity(type=float, shape=[], description =  'time of each chem. reaction')
     
 
-class Calculation(simulation.calculation.Calculation):
+class GrapheneCalculation(simulation.calculation.Calculation):
     m_def = Section(validate=False, extends_base_section=True)    
     dimensional_properties = SubSection(sub_section=Dimensions_Graphene.m_def, repeats=False)
     
@@ -65,7 +65,7 @@ class Calculation(simulation.calculation.Calculation):
     flag = Quantity(type=np.int32, shape=['*'], description = '# of bonds in graphene flake. Same order as "cartesian_site_coordinates" - array.')
     mean_radius_growth = Quantity(type=np.float64, shape=['*'], description = 'change of mean radius  in nm over time. See mean_radius_growth_time for time steps.')
     mean_radius_growth_time = Quantity(type=np.float64, shape=['*'], description = 'time steps for mean radius growth. Same order of array as "mean_radius_growth".')
-class Run(simulation.run.Run):
-    m_def = Section(validate=False, extends_base_section=True)
+#class GrapheneRun(simulation.run.Run):
+#    m_def = Section(validate=False, extends_base_section=True)
 
 m_package.__init_metainfo__()
