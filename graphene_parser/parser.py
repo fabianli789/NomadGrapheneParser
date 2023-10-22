@@ -37,8 +37,8 @@ from .metainfo.graphene import Dimensions_Graphene, ChemReactions_Graphene, Conc
 
 def DetailedParser(filepath, archive):
     
-    if os.path.exists(str(filepath.parent) + r'/status.csv'):
-        with open(str(filepath.parent) + r'/status.csv') as status_file:
+    if os.path.exists(str(filepath.parent) + r'/status_graphene.csv'):
+        with open(str(filepath.parent) + r'/status_graphene.csv') as status_file:
             time_run = archive.m_setdefault("run.time_run")
             time_run.cpu1_start = 0
             calc = archive.m_setdefault("run.calculation")
@@ -56,8 +56,8 @@ def DetailedParser(filepath, archive):
                     calc.step = int(float(parts[1]))
     
 
-    if os.path.exists(str(filepath.parent) + r'/occurrence_res.csv'):
-        with open(str(filepath.parent) + r"/occurrence_res.csv") as occurrence_file:
+    if os.path.exists(str(filepath.parent) + r'/occurrence_res_graphene.csv'):
+        with open(str(filepath.parent) + r"/occurrence_res_graphene.csv") as occurrence_file:
             occurence_array = []
             residence_time_array = []
             for i, line in enumerate(occurrence_file):
@@ -95,8 +95,8 @@ def DetailedParser(filepath, archive):
                         chem_reactions.residence_time = residence_time_array[i-9]
                     else:
                         pass
-    if os.path.exists(str(filepath.parent) + r'/last_step.csv'):
-        with open(str(filepath.parent) + r'/last_step.csv') as last_step_file:
+    if os.path.exists(str(filepath.parent) + r'/last_step_graphene.csv'):
+        with open(str(filepath.parent) + r'/last_step_graphene.csv') as last_step_file:
             species_array = []
             for j, x in enumerate(last_step_file):
                 pass
@@ -136,7 +136,7 @@ def DetailedParser(filepath, archive):
             calc.flag = np.array(flag)
             coordinates_final[:, 0] = np.array(coord_x_final)
             coordinates_final[:, 1] = np.array(coord_y_final)
-            structure_original = archive.m_setdefault("results.properties.structures.structure_original")
+            structure_original = archive.m_setdefault('results.properties.structures.structure_original')
             structure_original.cartesian_site_positions = coordinates_final
             structure_original.species_at_sites = species_array
 
@@ -156,8 +156,8 @@ def DetailedParser(filepath, archive):
                     sec_species.chemical_symbols.append("O")
 
                   
-    if os.path.exists(str(filepath.parent) + r'/concentration.csv'):
-        with open(str(filepath.parent) + r'/concentration.csv') as conc_file:
+    if os.path.exists(str(filepath.parent) + r'/concentration_graphene.csv'):
+        with open(str(filepath.parent) + r'/concentration_graphene.csv') as conc_file:
             first_line_parts = conc_file.readline().strip("\n").split(",")
             for x, bla in enumerate(conc_file):
                 rows = x
@@ -183,8 +183,8 @@ def DetailedParser(filepath, archive):
                 conc = calc.m_create(Concentrations_Graphene)   
                 conc.name = first_line_parts[i+1]
                 conc.concentration = conc_array[:,i]
-    if os.path.exists(str(filepath.parent) + r'/growth.csv'):
-        with open(str(filepath.parent) + r'/growth.csv') as growth_file:
+    if os.path.exists(str(filepath.parent) + r'/growth_graphene.csv'):
+        with open(str(filepath.parent) + r'/growth_graphene.csv') as growth_file:
             mean_radius_growth = []
             mean_radius_growth_time = []
             for i, line in enumerate(growth_file):
@@ -196,8 +196,8 @@ def DetailedParser(filepath, archive):
             calc.mean_radius_growth = np.array(mean_radius_growth)
             calc.mean_radius_growth_time = np.array(mean_radius_growth_time)
 
-    if os.path.exists(str(filepath.parent) + r'/graphene_properties.csv'):
-        with open(str(filepath.parent) + r'/graphene_properties.csv') as prop_file:
+    if os.path.exists(str(filepath.parent) + r'/properties_graphene.csv'):
+        with open(str(filepath.parent) + r'/properties_graphene.csv') as prop_file:
             dim = calc.m_create(Dimensions_Graphene)
             for i, line in enumerate(prop_file):
                 line = line.strip("\n")
