@@ -136,24 +136,9 @@ def DetailedParser(filepath, archive):
             calc.flag = np.array(flag)
             coordinates_final[:, 0] = np.array(coord_x_final)
             coordinates_final[:, 1] = np.array(coord_y_final)
-            structure_original = archive.m_setdefault('results.properties.structures.structure_original')
-            structure_original.cartesian_site_positions = coordinates_final
-            structure_original.species_at_sites = species_array
-
-            species_unique = sorted(list(set(species_array)))
             
-            for x in range(len(species_unique)):    
-                sec_species = structure_original.m_create(Species)
-                sec_species.name = species_unique[x]
-                sec_species.chemical_symbols = []
-                if re.search(r'C', species_unique[x]):
-                    sec_species.chemical_symbols.append("C")
-                if re.search(r'H', species_unique[x]):
-                    sec_species.chemical_symbols.append("H")
-                if re.search(r'Li', species_unique[x]):
-                    sec_species.chemical_symbols.append("Li")
-                if re.search(r'O', species_unique[x]):
-                    sec_species.chemical_symbols.append("O")
+            calc.species_coordinates = coordinates_final
+            calc.species = species_array
 
                   
     if os.path.exists(str(filepath.parent) + r'/concentration_graphene.csv'):

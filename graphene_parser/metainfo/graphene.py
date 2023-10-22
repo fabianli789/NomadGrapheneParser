@@ -65,6 +65,8 @@ class GrapheneCalculation(simulation.calculation.Calculation):
     flag = Quantity(type=np.int32, shape=['*'], description = '# of bonds in graphene flake. Same order as "cartesian_site_coordinates" - array.')
     mean_radius_growth = Quantity(type=np.float64, shape=['*'], description = 'change of mean radius  in nm over time. See mean_radius_growth_time for time steps.')
     mean_radius_growth_time = Quantity(type=np.float64, shape=['*'], description = 'time steps for mean radius growth. Same order of array as "mean_radius_growth".')
+    species_coordinates = Quantity(type=np.float64, shape=['*', 3], description='2D cartesian coordinates of the species in nm.')
+    species = Quantity(type=str, shape=['*'], description='Type of species, same array length as calculation.species_coordinates.')
 #class GrapheneRun(simulation.run.Run):
 #    m_def = Section(validate=False, extends_base_section=True)
 
