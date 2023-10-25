@@ -204,8 +204,8 @@ class GrapheneParser():
     def parse(self, filepath, archive, logger):
         sec_run = archive.m_create(Run)
         sec_program = archive.m_setdefault('run.program')
-        sec_program.name = 'Meysam Testing cron job'
-        sec_method = archive.m_setdefault('results.method')
-        sec_method.method_name = 'unavailable'
+        sec_program.name = 'Meysam Graphene Parser'
+        
+        
         mainfile = Path(filepath)
         DetailedParser(mainfile, archive)
