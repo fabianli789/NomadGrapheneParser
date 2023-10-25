@@ -205,6 +205,7 @@ class GrapheneParser():
         sec_run = archive.m_create(Run)
         sec_program = archive.m_setdefault('run.program')
         sec_program.name = 'Meysam Graphene Parser'
-    
+        sec_method = archive.m_setdefault('results.method')
+        sec_method.method_name = 'unavailable'
         mainfile = Path(filepath)
         DetailedParser(mainfile, archive)
