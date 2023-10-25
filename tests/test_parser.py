@@ -21,12 +21,12 @@ import logging
 
 from nomad.datamodel import EntryArchive
 
-from nomadapbs import APBSParser
+from graphene_parser import GrapheneParser
 
 
 @pytest.fixture
 def parser():
-    return APBSParser()
+    return GrapheneParser()
 
 
 def test_example(parser):
